@@ -4,34 +4,34 @@ const jwt = require("jsonwebtoken");
 
 const User = require("../models/users");
 
-// registrando um usuário
+//registro de usuario
 router.post("/register", async(req, res)=>{
     console.log(req);
     const email = req.body.email;
-    const password = req.body.password;
+    const senha = req.body.senha;
 
-    //checando se todos os dados foram enviados
-    if (email ==null || password == null){
+    //checagem de dados
+    if (email ==null || senha == null){
         return res.status(400).json({error : "Por favor, preencha todos os campos"});
     }
 
-    //conferindo se o usuário já existe
+    //conferindo o usuário
     const emailExists = await User.findOne({email : email});
     if(emailExists){
         return res.status(400).json({error : "O e-mail informado já existe."})
     }
 
-    //criando a senha com bcrypt
+    //criando a senha
     const salt = await bcrypt.genSalt(12);
     const passwordHash = await bcrypt.hash(password, salt);
 
     //criando o usuário após as validações no sistema
     const user = new User({
         email : email,
-        password: passwordHash
+        senha: passwordHash
     });
 
-    //montando um try catch para pega outros erros e afins
+    //montando um try catch para pegar outros erros e afins
     try{
         const newUser = await user.save();
         //criando o token do usuario
@@ -41,7 +41,6 @@ router.post("/register", async(req, res)=>{
         name : newUser.name,
         id : newUser._id
         },
-        "segredo" //isso torna o nosso token único
         );
 
         //retornar o token para o projeto e manda mensagem

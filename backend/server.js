@@ -7,8 +7,6 @@ const cors = require("cors");
 //routes
 const authRouter = require("./routes/authRoutes");
 
-//middlewares - travas do meio de projeto e acesso
-
 //config
 const dbName = "artemovUsers";
 const port = 3000;
@@ -23,23 +21,18 @@ app.use(express.static("public"));
 app.use("/api/auth", authRouter);
 
 //conexão mongodb
-mongoose.connect(
-    `mongodb://localhost:27017/${dbName}`, {
+mongoose.connect(`mongodb://127.0.0.1:27017/${dbName}`, {
         useNewUrlParser: true,
-        UseUnifiedTopology: true,
-        serverSelectionTimeoutMS: 10000
+        UseUnifiedTopology: true
     }
 );
 
 app.get("/", (req, res)=> {
     //primeira rota de teste
-    res.json({message : "Rota de teste será trocada!!!"});
+    res.json({message : "Rota de teste rotando!!!"});
 });
 
 //executando a porta
     app.listen(port, ()=>{
     console.log(`O backend está rodando na porta ${port}`)
 });
-
-
-    
