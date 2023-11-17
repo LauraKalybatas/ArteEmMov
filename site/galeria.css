@@ -184,11 +184,11 @@ hr{
 
 
 
+
 footer{
     background-color: #111;
     margin-top: 70px;
     bottom: 0;
-
     width: 100%;
 }
 
@@ -200,8 +200,6 @@ footer{
 .socialIcons{
     display: flex;
     justify-content: center;
-
-
 }
 
 .socialIcons a{
@@ -222,9 +220,7 @@ footer{
 
 
 .footerLinks{
-    list-style: none;
-
-    
+    list-style: none;  
 }
 
 .footerLinks li{
