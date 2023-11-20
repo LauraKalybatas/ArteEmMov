@@ -13,9 +13,10 @@ const port = 3000;
 
 const app = express();
 
+
 app.use(cors());
 app.use(express.json());
-app.use(express.static("public"));
+app.use(express.static('public'));
 
 //atrelar as rotas ao express
 app.use("/api/auth", authRouter);
