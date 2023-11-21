@@ -8,10 +8,10 @@ const User = require("../models/users");
 router.post("/register", async(req, res)=>{
     console.log(req);
     const email = req.body.email;
-    const senha = req.body.senha;
+    const password = req.body.password;
 
     //checagem de dados
-    if (email ==null || senha == null){
+    if (email ==null || password == null){
         return res.status(400).json({error : "Por favor, preencha todos os campos"});
     }
 
@@ -28,7 +28,7 @@ router.post("/register", async(req, res)=>{
     //criando o usuário após as validações no sistema
     const user = new User({
         email : email,
-        senha: passwordHash
+        password: passwordHash
     });
 
     //montando um try catch para pegar outros erros e afins

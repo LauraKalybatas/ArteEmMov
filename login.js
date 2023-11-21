@@ -1,6 +1,3 @@
-/* 
-    Faz o registro do usuário no banco de dados.
-*/
 async function login(){
     // Pega os campos da tela de login (login.html)
     const emailField = document.getElementById('email_field');
